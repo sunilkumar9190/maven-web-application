@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: tomcat-deployment
+ labels:
+  author: Amarnath
+  type: app
+spec:
+ replicas: 3
+ selector:
+  matchLables:
+   type: app
+ template:
+  metadata:
+   labels:
+    type: app
+   name: tomcat-pod
+  spec: 
+   containers:
+    - name: tomcat-server
+      image: amarsmart403/maven-web-application
+      ports:
+       - containerPort: 8080
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: tomcat-service
+ labels:
+  author: Amar
+  type: app
+spec: 
+ type: NodePort
+ selector:
+  type: app
+ ports:
+  - protocal: TCP
+    targetPort: 8080
+    port: 8080
+    nodePort: 32232
+    
