@@ -9,7 +9,7 @@ metadata:
 spec:
  replicas: 3
  selector:
-  matchLables:
+  matchLabels:
    type: app
  template:
   metadata:
@@ -36,7 +36,7 @@ spec:
  selector:
   type: app
  ports:
-  - protocal: TCP
+  - protocol: TCP
     targetPort: 8080
     port: 8080
     nodePort: 32232
